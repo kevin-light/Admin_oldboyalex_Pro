@@ -1,0 +1,67 @@
+http://www.cnblogs.com/alex3714/articles/5830365.html
+socket博客地址
+
+创建一个socketserver 至少分以下几步:
+
+First, you must create a request handler class by subclassing the BaseRequestHandlerclass and overriding its handle() method; this method will process incoming requests. 　　
+你必须创建一个请求处理类并且继承BaseRequestHandler，并且还要重写父类
+Second, you must instantiate one of the server classes, passing it the server’s address and the request handler class.
+实例化请求类TCPServer
+Then call the handle_request() orserve_forever() method of the server object to process one or many requests.
+Finally, call server_close() to close the socket.
+
+class socketserver.BaseServer(server_address, RequestHandlerClass)
+This is the superclass of all Server objects in the module. It defines the interface, given below, but does not implement most of the methods, which is done in subclasses. The two parameters are stored in the respective server_address and RequestHandlerClass attributes.
+
+fileno()
+Return an integer file descriptor for the socket on which the server is listening. This function is most commonly passed to selectors, to allow monitoring multiple servers in the same process.
+
+serve_forever(poll_interval=0.5)
+Handle requests until an explicit shutdown() request. Poll for shutdown every poll_interval seconds. Ignores the timeout attribute. It also calls service_actions(), which may be used by a subclass or mixin to provide actions specific to a given service. For example, the ForkingMixIn class uses service_actions() to clean up zombie child processes.
+
+Changed in version 3.3: Added service_actions call to the serve_forever method.
+
+service_actions()
+This is called in the serve_forever() loop. This method can be overridden by subclasses or mixin classes to perform actions specific to a given service, such as cleanup actions.
+
+New in version 3.3.
+
+shutdown()
+Tell the serve_forever() loop to stop and wait until it does.
+
+server_close()
+Clean up the server. May be overridden.
+
+address_family
+The family of protocols to which the server’s socket belongs. Common examples are socket.AF_INET and socket.AF_UNIX.
+
+RequestHandlerClass
+The user-provided request handler class; an instance of this class is created for each request.
+
+server_address
+The address on which the server is listening. The format of addresses varies depending on the protocol family; see the documentation for the socket module for details. For Internet protocols, this is a tuple containing a string giving the address, and an integer port number: ('127.0.0.1', 80), for example.
+
+socket
+The socket object on which the server will listen for incoming requests.
+
+The server classes support the following class variables:
+
+allow_reuse_address
+Whether the server will allow the reuse of an address. This defaults to False, and can be set in subclasses to change the policy.
+
+request_queue_size
+The size of the request queue. If it takes a long time to process a single request, any requests that arrive while the server is busy are placed into a queue, up to request_queue_size requests. Once the queue is full, further requests from clients will get a “Connection denied” error. The default value is usually 5, but this can be overridden by subclasses.
+
+socket_type
+The type of socket used by the server; socket.SOCK_STREAM and socket.SOCK_DGRAM are two common values.
+
+timeout
+Timeout duration, measured in seconds, or None if no timeout is desired. If handle_request() receives no incoming requests within the timeout period, the handle_timeout() method is called.
+
+There are various server methods that can be overridden by subclasses of base server classes like TCPServer; these methods aren’t useful to external users of the server object.
+
+finish_request()
+Actually processes the request by instantiating RequestHandlerClass and calling its handle() method.
+
+process_request(request, client_address)
+Calls finish_request() to create an instance of the RequestHandlerClass. If desired, this function can create a new process or thread to handle the request; the ForkingMixIn and ThreadingMixIn classes do this.
