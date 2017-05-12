@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine("mysql+pymysql://root:111111@127.0.0.1/testdb",encoding="utf-8",echo=True)
+engine = create_engine("mysql+pymysql://root:111111@127.0.0.1/testdb?charset=utf8",encoding="utf-8",echo=True)
 Base = declarative_base()   #生成ROM基类
 
 class User(Base):
