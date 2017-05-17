@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine,Column,Integer,String
+from sqlalchemy import create_engine,Column,Integer,String,DATE
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -8,42 +8,68 @@ from sqlalchemy.orm import relationship
 engine = create_engine("mysql+pymysql://root:111111@localhost:3306/testdb?charset=utf8",encoding="utf-8")
 Base = declarative_base()
 
-class User(Base):
-    __tablename__ = 'user_1'
+class Student(Base):
+    __tablename__ = 'student'
     id = Column(Integer,primary_key=True)
-    name = Column(String(32))
-    password = Column(String(64))
+    name = Column(String(32),nullable=False)
+    register_data = Column(DATE,nullable=False)
 
     def __repr__(self):
-        return "<User(name='%s',password='%s')>" % (self.name,self.password)
+        return "<User(name='%s',id='%s')>" % (self.name,self.id)
 
 
-class Address(Base):
-    __tablename__ = 'addresses'
+class StudentRecord(Base):
+    __tablename__ = 'study_record'
     id = Column(Integer,primary_key=True)
-    email_address = Column(String(32),nullable=False)
-    user_id = Column(Integer,ForeignKey('user_1.id'))
+    day = Column(String(32),nullable=False)
+    status = Column(String(32),nullable=False)
+    stu_id = Column(Integer,ForeignKey('student.id'))
 
-    user_1 = relationship("User",backref="addresses")  #这个nb，允许你在user表里通过backref字段反向查出所有它在addresses表里的关联项
+    student = relationship("Student",backref="my_study_record")  #这个nb，允许你在user表里通过backref字段反向查出所有它在student表里的关联项
 
     def __repr__(self):
-        return "<Address(email_address='%s')>" % self.email_address
+        return "<%s day = %s  status=%s>" % (self.student.name,self.day,self.status)
 
 Base.metadata.create_all(engine)
 
 if __name__ == '__main__':
     Session_class = sessionmaker(bind=engine)
-    Session = Session_class()
+    session = Session_class()
 
-    # obj = Session.query(User).first()
-    # for i in obj.addresses:
-    #     print(i)
-    # addr_obj = Session.query(Address).first()
-    # print(addr_obj.user.name)
+    # s1 = Student(name="alex",register_data="2017-01-01")
+    # s2 = Student(name="jack",register_data="2017-02-01")
+    # s3 = Student(name="rain",register_data="2017-03-01")
+    # s4 = Student(name="eric",register_data="2017-04-01")
+    #
+    # study_obj1=StudentRecord(day=1,status="YES",stu_id=1)
+    # study_obj2=StudentRecord(day=2,status="no",stu_id=1)
+    # study_obj3=StudentRecord(day=3,status="YES",stu_id=1)
+    # study_obj4=StudentRecord(day=4,status="YES",stu_id=2)
+    #
+    # session.add_all([s1,s2,s3,s4,study_obj1,study_obj2,study_obj3,study_obj4])
 
-    obj = Session.query(User).filter(User.name=='rain').all([0])
-    print(obj.addresses)
+    stu_obj = session.query(Student).filter(Student.name=="alex").first()
+    print(stu_obj.my_study_record)
 
-    obj.addresses = [Address(email_address="123123"),
-                     Address(email_address="123111")]
-    Session.commit()
+
+    session.commit()
+
+
+
+
+
+
+
+#
+#     # obj = Session.query(User).first()
+#     # for i in obj.addresses:
+#     #     print(i)
+#     # addr_obj = Session.query(Address).first()
+#     # print(addr_obj.user.name)
+#
+#     obj = Session.query(User).filter(User.name=='rain').all([0])
+#     print(obj.addresses)
+#
+#     obj.addresses = [Address(email_address="123123"),
+#                      Address(email_address="123111")]
+#     Session.commit()
