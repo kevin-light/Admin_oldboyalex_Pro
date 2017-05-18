@@ -13,7 +13,6 @@ class Customer(Base):
     __tablename__ = 'customer'
     id = Column(Integer, primary_key=True)
     name = Column(String(64))
-
     billing_address_id = Column(Integer, ForeignKey("address.id"))
     shipping_address_id = Column(Integer, ForeignKey("address.id"))
 
