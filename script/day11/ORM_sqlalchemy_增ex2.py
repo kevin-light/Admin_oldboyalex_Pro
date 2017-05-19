@@ -31,3 +31,4 @@ Base = declarative_base()
 
 Session_class = sessionmaker(bind=engine)
 Session = Session_class()
+session.commit()
