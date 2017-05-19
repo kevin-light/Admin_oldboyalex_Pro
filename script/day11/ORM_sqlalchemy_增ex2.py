@@ -31,4 +31,3 @@ Base = declarative_base()
 
 Session_class = sessionmaker(bind=engine)
 Session = Session_class()
-my_user = Session.query(User)
