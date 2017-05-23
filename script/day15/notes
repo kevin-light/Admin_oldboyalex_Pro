@@ -1,0 +1,25 @@
+JavaScript
+    独立语言，浏览器具有js解释器
+
+    JavaScript代码存在形式：
+        -head中
+            <script>
+                //javascrupt代码
+                alert（123）
+            </script>
+
+            <script type="text/javascript">
+                //javascript代码
+                alert（123）；
+            </script>
+        -文件
+            <script src='js文件路径.js'></script>
+        ps:js代码需要放置在《body》标签内部的最下方
+    注释：
+        单行 //    多行 /*     */
+    变量：
+        Python：
+            name = ‘alex’
+        JavaScript：
+            name = ‘alex’ 全局变量
+            var name = ‘alex’ 局部变量
