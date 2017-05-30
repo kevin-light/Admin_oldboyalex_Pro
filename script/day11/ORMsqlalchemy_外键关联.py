@@ -28,7 +28,7 @@ class StudentRecord(Base):
     student = relationship("Student",backref="my_study_record")  #这个nb，允许你在user表里通过backref字段反向查出所有它在student表里的关联项
 
     def __repr__(self):
-        return "<%s day = %s  status=%s>" % (self.student.name,self.day,self.status)
+        return "<%s day19 = %s  status=%s>" % (self.student.name,self.day,self.status)
 
 Base.metadata.create_all(engine)
 
@@ -41,10 +41,10 @@ if __name__ == '__main__':
     # s3 = Student(name="rain",register_data="2017-03-01")
     # s4 = Student(name="eric",register_data="2017-04-01")
     #
-    # study_obj1=StudentRecord(day=1,status="YES",stu_id=1)
-    # study_obj2=StudentRecord(day=2,status="no",stu_id=1)
-    # study_obj3=StudentRecord(day=3,status="YES",stu_id=1)
-    # study_obj4=StudentRecord(day=4,status="YES",stu_id=2)
+    # study_obj1=StudentRecord(day19=1,status="YES",stu_id=1)
+    # study_obj2=StudentRecord(day19=2,status="no",stu_id=1)
+    # study_obj3=StudentRecord(day19=3,status="YES",stu_id=1)
+    # study_obj4=StudentRecord(day19=4,status="YES",stu_id=2)
     #
     # session.add_all([s1,s2,s3,s4,study_obj1,study_obj2,study_obj3,study_obj4])
 
