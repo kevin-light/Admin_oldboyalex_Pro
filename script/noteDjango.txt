@@ -1,0 +1,3 @@
+day18-14-报错runtimeerror解决：url的斜杠在urls.py中urlpatterns和html中的action的url保持一致
+
+pychram报错：exit code -1073741819 (0xC0000005) 更换端口
