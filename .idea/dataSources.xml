@@ -7,27 +7,10 @@
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/../Alex_note/day20/day20/settings.py</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\shenghui\Desktop\virtualenvs\day21\db.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/testdb</jdbc-url>
       <explain-plan-config>
         <provider>com.intellij.database.plan.mysql.MysqlExplainPlanProvider</provider>
       </explain-plan-config>
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.16.1/sqlite-jdbc-3.16.1.jar</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.16.1/xerial-sqlite-license.txt</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.16.1/xerial-sqlite-license_2.txt</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.16.1/xerial-sqlite-license_3.txt</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.16.1/xerial-sqlite-license_4.txt</url>
-        </library>
-      </libraries>
     </data-source>
     <data-source source="LOCAL" name="Django default2" uuid="3f66b5e0-74d7-4f8b-98d9-279a8fc11ca7">
       <driver-ref>sqlite.xerial</driver-ref>
